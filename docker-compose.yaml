@@ -1,0 +1,23 @@
+version: '3'
+services:
+  database:
+    image : mysql:8.0
+    ports:
+      - 3309:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc
+      MYSQL_DATABASE: prueba-docker
+      MYSQL_USER: sandra
+      MYSQL_PASSWORD: 123
+      
+
+
+  flask:
+    build: ./app
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+
